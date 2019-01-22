@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS // you can remove this line
 #include <stdlib.h>   // For _MAX_PATH definition
 #include <stdio.h>
-#include <malloc.h>
+//#include <malloc.h>
 #include "structs.h"
 #include "readfile.h"
 #include "interactive.h"
@@ -20,9 +20,10 @@ int main(int argc, char * argv[]) {
 	zipTowns arrs; // all the arrays in one struct
 	int length = 0;		// current count of items in arrays 
 
-	FILE * infile = NULL;
-
-	int ret=0, size;
+	FILE * infile = fopen(argv[1], "r");
+	
+	int ret=0, size; 
+	size = atoi(argv[2]);
 
 	if (getArgsInfoOpenFile(argc, argv, &infile, &size)) {
 		printf("error in command line arguments\n");

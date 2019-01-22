@@ -1,15 +1,13 @@
 CC = gcc
+
 #CFLAGS = -g -Wall -pedantic
 CFLAGS = -O -Wall -pedantic
+Source : Source.o 
 
-Source.c : Source.o all.o 
-
-all.h: readfile.h structs.h interactive.h node.h
-		touch all.h
-
+Source.o: interactive.h readfile.h structs.h 
 
 clean:
-	rm -f *.o core a1
+	rm -f *.o core Source
 
 run: Source
 	./Source
