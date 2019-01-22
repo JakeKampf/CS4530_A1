@@ -19,9 +19,18 @@ extern int getArgsInfoOpenFile(int argc, char * argv[], FILE * * infile, int * s
 int main(int argc, char * argv[]) {
 	zipTowns arrs; // all the arrays in one struct
 	int length = 0;		// current count of items in arrays 
-
-	FILE * infile = fopen(argv[1], "r");
+	char * name = NULL;
+	FILE * infile = fopen(argv[1], "r"); 
 	
+	/*
+		make sure file was entered correctly
+	*/
+	while(!infile){
+		printf("Please enter a properly formatted file name. Ex: test.txt\n");
+    	scanf("%s", name); 
+		FILE * infile = fopen(argv[1], "r");
+	}
+
 	int ret=0, size; 
 	size = atoi(argv[2]);
 
@@ -34,10 +43,9 @@ int main(int argc, char * argv[]) {
 		getArrs(&arrs, size);
 		readFile(arrs, infile, &length);
 		fclose(infile);
-		doInteractive(arrs, length);
-	} // end else no error in command line
-	printf("press any key: ");
-	getc(stdin);
+		doInteractive(arrs, size);
+	} // end else no error in command line 
+	
 	
 	return ret;
 }
